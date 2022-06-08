@@ -29,5 +29,12 @@ public class RestAdapater {
     public List<DespesaDto> getAllDespesas(){
         return despesaService.consultarDespesas();
     }
-    
+
+    @GetMapping("/{id}")
+    public ResponseEntity<DespesaDto> getProdutoById(@PathVariable(value = "id") Long idDespesa)
+            throws ResourceNotFoundException {
+        DespesaDto produto = despesaService.consultarDespesa(idDespesa)
+                .orElseThrow(() -> new ResourceNotFoundException(MSG_NAO_ENCONTRADO + idDespesa));
+        return ResponseEntity.ok().body(produto);
+    }
 }
