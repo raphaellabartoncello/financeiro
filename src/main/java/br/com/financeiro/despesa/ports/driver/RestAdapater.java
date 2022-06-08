@@ -48,4 +48,9 @@ public class RestAdapater {
         final DespesaDto updatedDespesa = despesaService.atualizarDespesa(despesa);
         return ResponseEntity.ok(updatedDespesa);
     }
+
+    @PostMapping("/")
+    public DespesaDto createDespesa(@Valid @RequestBody DespesaDto despesa) {
+        return despesaService.atualizarDespesa(despesa);
+    }
 }
