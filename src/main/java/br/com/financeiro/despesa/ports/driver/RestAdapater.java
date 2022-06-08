@@ -6,11 +6,9 @@ import br.com.financeiro.despesa.domain.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.UUID;
 
@@ -37,5 +35,17 @@ public class RestAdapater {
         DespesaDto produto = despesaService.consultarDespesa(idDespesa)
                 .orElseThrow(() -> new ResourceNotFoundException(MSG_NAO_ENCONTRADO + idDespesa));
         return ResponseEntity.ok().body(produto);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<DespesaDto> updateDespesa(@PathVariable(value = "id") Long idDespesa, @Valid @RequestBody DespesaDto despesaDetails)
+            throws ResourceNotFoundException {
+        DespesaDto despesa = despesaService.consultarDespesa(idDespesa)
+                .orElseThrow(() -> new ResourceNotFoundException(MSG_NAO_ENCONTRADO + idDespesa));
+
+        despesa.setNomeDespesa(despesaDetails.getNomeDespesa());
+        despesa.setValor(despesaDetails.getValor());
+        final DespesaDto updatedDespesa = despesaService.atualizarDespesa(despesa);
+        return ResponseEntity.ok(updatedDespesa);
     }
 }
