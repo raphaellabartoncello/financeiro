@@ -2,6 +2,7 @@ package br.com.financeiro.despesa.ports.driver;
 
 import br.com.financeiro.despesa.domain.DespesaDto;
 import br.com.financeiro.despesa.domain.DespesaService;
+import br.com.financeiro.despesa.domain.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
