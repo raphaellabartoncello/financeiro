@@ -15,7 +15,7 @@ public class Despesa {
     private String nomeDespesa;
 
     @Column(name = "valor", length = 10, nullable = false)
-    private Long valor;
+    private double valor;
 
     public Long getIdDespesa() {
         return idDespesa;
@@ -33,11 +33,23 @@ public class Despesa {
         this.nomeDespesa = nomeDespesa;
     }
 
-    public Long getValor() {
+    public double getValor() {
         return valor;
     }
 
-    public void setValor(Long valor) {
+    public void setValor(double valor) {
         this.valor = valor;
+    }
+
+    public Despesa(Long idDespesa, String nomeDespesa, double valor){
+        this.idDespesa = idDespesa;
+        this.nomeDespesa = nomeDespesa;
+        this.valor = valor;
+    }
+
+    public Despesa(){
+        this.idDespesa = null;
+        this.nomeDespesa = "";
+        this.valor = 0.00;
     }
 }
