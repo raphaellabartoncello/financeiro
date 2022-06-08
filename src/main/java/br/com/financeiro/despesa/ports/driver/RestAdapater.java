@@ -9,7 +9,9 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 @RestController
@@ -52,5 +54,17 @@ public class RestAdapater {
     @PostMapping("/")
     public DespesaDto createDespesa(@Valid @RequestBody DespesaDto despesa) {
         return despesaService.atualizarDespesa(despesa);
+    }
+
+    @DeleteMapping("/{id}")
+    public Map<String, Boolean> deleteDespesa(@PathVariable(value = "id") Long idDespesa)
+            throws ResourceNotFoundException {
+        DespesaDto despesa = despesaService.consultarDespesa(idDespesa)
+                .orElseThrow(() -> new ResourceNotFoundException(MSG_NAO_ENCONTRADO + idDespesa));
+
+        despesaService.excluirDespesa(despesa);
+        Map<String, Boolean> response = new HashMap<>();
+        response.put("deleted", Boolean.TRUE);
+        return response;
     }
 }
