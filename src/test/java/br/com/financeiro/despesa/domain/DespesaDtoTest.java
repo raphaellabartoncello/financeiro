@@ -67,26 +67,29 @@ public class DespesaDtoTest {
         assertThat(p1.equals(p2)).isFalse();
     }
 
-//    @Test
-//    void testEqualsNOK_nomeParceiro() {
-//        DespesaDto p1 = new DespesaDto(UUID.fromString("1972b2cc-1328-4d32-8211-10b213a6f171"),"Rappi",30);
-//        DespesaDto p2 = new DespesaDto(UUID.fromString("1972b2cc-1328-4d32-8211-10b213a6f171"),"Rappi",30);
-//        assertThat(p1.equals(p2)).isFalse();
-//    }
-//
-//    @Test
-//    void testEqualsNOK_codigoProduto() {
-//        DespesaDto p1 = new DespesaDto(UUID.fromString("1972b2cc-1328-4d32-8211-10b213a6f171"),"Rappi",30);
-//        DespesaDto p2 = new DespesaDto(UUID.fromString("1972b2cc-1328-4d32-8211-10b213a6f171"),"Rappi",30);
-//        assertThat(p1.equals(p2)).isFalse();
-//    }
-//
-//    @Test
-//    void testEqualsNOK_valorProduto() {
-//        DespesaDto p1 = new DespesaDto(UUID.fromString("1972b2cc-1328-4d32-8211-10b213a6f171"),"Rappi",30);
-//        DespesaDto p2 = new DespesaDto(UUID.fromString("1972b2cc-1328-4d32-8211-10b213a6f171"),"Rappi",30);
-//        assertThat(p1.equals(p2)).isFalse();
-//    }
+    @Test
+    void testEqualsNOK_nomeParceiro() {
+        Random random = new Random();
+        DespesaDto p1 = new DespesaDto(random.nextLong(),"Rappi",30);
+        DespesaDto p2 = new DespesaDto(random.nextLong(),"Rappi",30);
+        assertThat(p1.equals(p2)).isFalse();
+    }
+
+    @Test
+    void testEqualsNOK_codigoProduto() {
+        Random random = new Random();
+        DespesaDto p1 = new DespesaDto(random.nextLong(),"Rappi",30);
+        DespesaDto p2 = new DespesaDto(random.nextLong(),"Rappi",30);
+        assertThat(p1.equals(p2)).isFalse();
+    }
+
+    @Test
+    void testEqualsNOK_valorProduto() {
+        Random random = new Random();
+        DespesaDto p1 = new DespesaDto(random.nextLong(),"Rappi",30);
+        DespesaDto p2 = new DespesaDto(random.nextLong(),"Rappi",30);
+        assertThat(p1.equals(p2)).isFalse();
+    }
 
     @Test
     void testHash(){
